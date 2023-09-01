@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+.main-con{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+}
+.left{ 
+    background: linear-gradient(168.6deg,#0052c9 1.12%, #0a91db 100%);
+    padding: 20px;
+}
+.left button{
+    background: white;
+    border-radius: 8px;
+    border: none;
+    padding: 10px;
+    color: black;
+}
+.left .row1{ 
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid white;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.left .row2{  
+    border-radius: 6px; 
+    color: white; 
+    margin-bottom: 40px;
+}
+.left .row2 input{ 
+    padding: 10px;
+    outline: none;
+    border: 1px solid white; 
+    background: none;
+    color: white; 
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+.left .row3{   
+    color: white; 
+    margin-bottom: 40px;
+}
+.left .row4{   
+    color: white; 
+    display: flex;
+}
+.middle video{  
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+}
+.middle .top{ 
+    width: 100%;
+    height: 50%; 
+    display: flex;
+    justify-content: flex-end;
+}
+.middle .top .btns-con{  
+    position: absolute; 
+    display: flex;
+    justify-content: flex-end; 
+    padding: 20px;
+}
+.middle .bottom{ 
+    width: 100%;
+    height: 50%; 
+    display: flex;
+    justify-content: center;
+}
+.middle .bottom .btns-con{  
+    width: 100%; 
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+.middle .bottom .btns-con button{  
+    width: 50px;  
+    height: 50px;
+    border-radius: 100%;
+    border: none;
+    background: black;
+    color: white;
+}
+.middle .bottom .btns-con .end{
+    background-color: red;
+}
+.right{ 
+    background: rgba(196,196,196,0.2);
+    height: 100vh;
+}
+.messages-con{
+    padding: 20px;
+    width: 100%;
+    height:500px;
+    border: 1px solid black;
+    overflow-y: scroll; 
+}
+.messages-con .message_left_container{
+    display: flex;
+    justify-content: flex-start;
+}
+.messages-con .message_left_container .message_left_paragraph{
+    padding: 10px;
+    border: 1px solid rgb(192, 182, 182);
+    color: black;
+    border-radius: 6px;
+}
+.messages-con .message_right_container{
+    display: flex;
+    justify-content: flex-end;
+}
+.messages-con .message_right_container .message_right_paragraph{
+    padding: 10px;
+    border: 1px solid rgb(230, 220, 220);
+    color: white;
+    background-color: #0052c9;
+    border-radius: 6px;
+}
+.new-message-con{
+    padding: 20px;
+    width: 100%;
+    height:10% ;
+    border: 1px solid black;
+}
+.disabled-con {
+    pointer-events: none;
+    opacity: 0.7;
+}
+.display-none{
+    display: none;
+}
+#personal_code_copy_button{
+    cursor: pointer;
+}

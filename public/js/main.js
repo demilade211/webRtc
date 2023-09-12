@@ -3,13 +3,14 @@ import * as wss from "./wss.js"
 import * as webRTCHandler from "./webRTCHandler.js"
 import * as recordingUtils from "./recordingUtils.js"
 import * as constants from "./constants.js"
+import * as strangerUtils from "./strangerUtils.js"
 import * as ui from "./ui.js"
 
 // initialization of socketIO connection
 const socket = io("/")
 wss.registerSocketEvents(socket)
 
-//webRTCHandler.getLocalPreview()
+webRTCHandler.getLocalPreview()
 
 //register event for personal code copy button
 const personalCodeCopyButon = document.getElementById("personal_code_copy_button")
@@ -21,6 +22,8 @@ personalCodeCopyButon.addEventListener("click", () => {
 //register event for connection buttons
 const personalCodeChatButon = document.getElementById("personal_code_chat_button")
 const personalCodeVideoButon = document.getElementById("personal_code_video_button")
+const strangerVideoButon = document.getElementById("stranger_video_button")
+const strangerChatButon = document.getElementById("stranger_chat_button")
 
 personalCodeChatButon.addEventListener("click", () => {
      console.log("chat btn");
@@ -35,6 +38,26 @@ personalCodeVideoButon.addEventListener("click", () => {
      const callType = constants.callType.VIDEO_PERSONAL_CODE
      webRTCHandler.sendPreOffer(callType, calleePersonalCode.value)
 })
+
+strangerChatButon.addEventListener("click", () => {
+     strangerUtils.getStrangerSocketIdAndConnect(constants.callType.CHAT_STRANGER)
+})
+
+strangerVideoButon.addEventListener("click", () => {
+     strangerUtils.getStrangerSocketIdAndConnect(constants.callType.VIDEO_STRANGER)
+})
+
+const checkbox = document.getElementById("allow_strangers_checkbox");
+
+checkbox.addEventListener("change", function () {
+
+     const checkBoxState = store.getState().allowConnectionFromStrangers;
+     // Check if the checkbox is checked
+     store.setAllowConnectionFromStrangers(!checkBoxState)
+     strangerUtils.handleConnectedUserHangedUp(!checkBoxState)
+});
+
+
 
 // event listeners for video call buttons
 const micButton = document.getElementById("mic_button");
@@ -67,8 +90,8 @@ newMessageInput.addEventListener('keydown', (event) => {
 
      if (key === 'Enter') {
           webRTCHandler.sendMessageUsingDataChannel(event.target.value)
-          ui.appendMessage(event.target.value,true)
-          newMessageInput.value=""
+          ui.appendMessage(event.target.value, true)
+          newMessageInput.value = ""
      }
 })
 
@@ -77,8 +100,8 @@ sendMessageButton.addEventListener('click', () => {
      const message = newMessageInput.value
 
      webRTCHandler.sendMessageUsingDataChannel(message)
-     ui.appendMessage(newMessageInput.value ,true)
-     newMessageInput.value=""
+     ui.appendMessage(newMessageInput.value, true)
+     newMessageInput.value = ""
 })
 
 //recording
@@ -93,3 +116,25 @@ stopRecordingButton.addEventListener('click', () => {
      recordingUtils.stopRecording()
      ui.resetRecordingButton()
 })
+
+const pauseRecordingButton = document.getElementById("pause_button")
+pauseRecordingButton.addEventListener('click', () => {
+     recordingUtils.pauseRecording()
+     ui.switchRecordingButton(true)
+})
+
+const resumeRecordingButton = document.getElementById("resume_button")
+resumeRecordingButton.addEventListener('click', () => {
+     recordingUtils.resumeRecording()
+     ui.switchRecordingButton()
+})
+
+const hangUpButton = document.getElementById("hang_up_button")
+hangUpButton.addEventListener('click', () => {
+     webRTCHandler.handleHangUp();
+})
+
+const hangUpChatButton = document.getElementById("hang_up_chat_button")
+hangUpChatButton.addEventListener('click', () => {
+     webRTCHandler.handleHangUp();
+}) 

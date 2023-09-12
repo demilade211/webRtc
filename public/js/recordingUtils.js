@@ -48,7 +48,7 @@ const downloadRecordedVideo = () => {
 }
 
 const handleDataAvailable = (event) => {
-    if (event, data.size > 0) {
+    if (event.data.size > 0) {
         recordedChunks.push(event.data)
         downloadRecordedVideo()
     }

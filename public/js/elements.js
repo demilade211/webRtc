@@ -25,6 +25,11 @@ export const getCallingDialog = (rejectCallHandler) => {
     console.log("getting call dialog"); 
     const modal = new bootstrap.Modal(document.getElementById('callingModal'));  
     modal.show()
+    let endCall = document.getElementById('calling_reject')
+    endCall.addEventListener("click",()=>{
+        rejectCallHandler() 
+        modal.hide()
+    })
 }
 
 export const getInfoDialog = (head,body) => {

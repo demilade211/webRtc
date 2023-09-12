@@ -71,6 +71,12 @@
     display: flex;
     justify-content: flex-end; 
     padding: 20px;
+    border: 1px solid black;
+}
+.middle .top .btns-con .btns{   
+    border: 1px solid black;
+    pointer-events: auto; 
+    z-index: 5;
 }
 .middle .bottom{ 
     width: 100%;
@@ -79,7 +85,6 @@
     justify-content: center;
 }
 .middle .bottom .btns-con{  
-    width: 100%; 
     position: absolute;
     bottom: 20px;
     display: flex;
@@ -143,4 +148,4 @@
 }
 #personal_code_copy_button{
     cursor: pointer;
-}
+} 
